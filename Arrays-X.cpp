@@ -167,3 +167,28 @@ int main() {
 }
 
 //Time Complexity: O(2*N)
+
+
+// leaders of array
+vector<int> LeadersOfarray(int arr[], int n){
+    vector<int> ans;
+    for(int i = 0; i < n; i++){
+        bool leader = true;
+
+    //Checking whether arr[i] is greater than all 
+    //the elements in its right side
+        for(int j = i+1; j <n; j++){
+            if(arr[j] > arr[i]){
+
+        // If any element found is greater than current leader
+        // curr element is not the leader
+                leader = false;
+                break;
+            }
+        }
+        if(leader == true)ans.push_back(arr[i]);
+    }
+    return ans;
+}
+
+//Time Complexity: O(N^2);
