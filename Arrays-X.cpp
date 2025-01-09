@@ -112,3 +112,58 @@ vector<int> rearrangebySign(vector<int> & arr, int n){
     }
     return arr;
 }
+
+// Optimal Approach
+vector<int> rearrangebySignn(vector<int> &a){
+    int n = a.size();
+    vector<int> ans(n,0);
+
+    // Separate positive and negative elements of the array
+    for(int i = 0; i < n; i++){
+        if(arr[i] > 0) pos.push_back(arr[i]);
+        else neg.push_back(arr[i]);
+    }
+    // IF the positives are lesser than the negatives
+    if(pos.size() < neg.size()){
+    // First, fill array alternatively till the point 
+    // where positives and negatives ar equal in number
+        for(int i = 0; i < pos.size(); i++){
+        arr[2*i] = pos[i];
+        arr[2*i+1] = neg[i];
+        }
+        // Then, fill the remaining elements with negatives
+        int index = pos.size()*2;
+        for(int i = pos.size(); i<neg.size(); i++){
+            arr[index] = neg[i];
+            index++;
+        }
+    }
+    else{
+        for(int i = 0; i < pos.size(); i++){
+            arr[2*i] = pos[i];
+            arr[2*i+1] = neg[i];
+        }
+        int index = neg.size()*2;
+        for(int i = neg.size(); i<pos.size(); i++){
+            arr[index] = pos[i];
+            index++;
+        }
+    }
+    return arr;
+}
+int main() {
+    
+  // Array Initialisation.
+  int n = 6;
+  vector<int> A {1,2,-4,-5,3,4};
+
+  vector<int> ans = RearrangebySign(A,n);
+  
+  for (int i = 0; i < ans.size(); i++) {
+    cout << ans[i] << " ";
+  }
+
+  return 0;
+}
+
+//Time Complexity: O(2*N)
