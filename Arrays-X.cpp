@@ -192,3 +192,32 @@ vector<int> LeadersOfarray(int arr[], int n){
 }
 
 //Time Complexity: O(N^2);
+
+// Optimal Approach
+vector<int> printLeaders(int arr[], int n){
+    vector<int> ans;
+
+    //  Last element of the array is the leader and push into arrays
+    int max = arr[n-1];
+    ans.push_back(arr[n-1]);
+
+    // start checking from the end if a number is greater or not from the right
+    for(int i = n-2; i>=0; i--){
+        if(arr[i] > max){
+            ans.push_back(arr[i]);
+            max=arr[i];
+        }
+    }
+    return ans;
+}
+
+int main(){
+    int n = 6;
+    int arr[6] = {10,22, 12, 3,0,6};
+    vector<int> ans = printLeaders(arr,n);
+    for(int i = ans.size() - 1; i>=0; i--){
+        cout << arr[i] << "";
+    }
+    cout << endl;
+    return 0;
+}
