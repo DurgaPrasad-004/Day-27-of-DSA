@@ -92,3 +92,23 @@ int main(){
     cout << "The maximum subarray sum is: " << maxSum << endl;
     return 0;
 }
+
+// Rearrange array element s by sign
+vector<int> rearrangebySign(vector<int> & arr, int n){
+    // Define 2 vectors, one for storing positive 
+  // and other for negative elements of the array
+    vector<int> pos;
+    vector<int> neg;
+    
+    // Separate positive and negative elements of the array
+    for(int i = 0; i < n; i++){
+        if(arr[i] > 0) pos.push_back(arr[i]);
+        else neg.push_back(arr[i]);
+    }
+    // Positives on even indices, negatives on odd.
+    for(int i = 0; i < n / 2; i++){
+        arr[2*i] = pos[i];
+        arr[2*i+1] = neg[i];
+    }
+    return arr;
+}
